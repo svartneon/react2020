@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.Button{
+  color: purple;
+  font-size: 40px;
+}
+
+.Message{
+  font-size: 40px;
+}
