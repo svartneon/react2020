@@ -20,18 +20,16 @@
   flex-grow: 10;
 }
 
-.Button{
-  color: purple;
-  font-size: 20px;
-  float: right;
-}
-
 .Message{
   font-size: 40px;
 }
 
 .Form{
   background-color:rgb(247, 255, 252);
+}
+
+.Form > button{
+  float: right;
 }
 
 .Form-elements{

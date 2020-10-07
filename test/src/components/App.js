@@ -2,9 +2,6 @@ import React from 'react';
 import Form from './Form.js';
 import './../styles/App.css';
 
-
-
-
 function Display(props) {
   return (
     <div className="Message">{props.message}</div>
@@ -12,15 +9,16 @@ function Display(props) {
 }
 
 
-
-
-
 function App() {
 
   const [element, setElement] = React.useState('fire');
   const [result, setResult] = React.useState('');
   const handleOptionChange = (event) => setElement(event.target.value);
-  const handleSubmit = () => setResult(element)
+
+  function handleSubmit(event){ 
+    event.preventDefault();
+    setResult(element);
+  }
 
   return (
     <div className="Wrapper">
