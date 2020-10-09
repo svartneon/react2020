@@ -2,30 +2,32 @@
 .Wrapper{
   display: flex;
   flex-direction: column;
+  font-family: monospace;
   height: 100vh;
 }
 
 .Header{
   background-color: rgb(171, 236, 236);
   height: 100px;
-  flex-grow: 2;
+  font-size: 50px;  
+  text-align: center;
+  padding-top: 60px;
+  color: rgb(83, 99, 99);
 }
 
 .Body {
   display: flex;
   flex-wrap: nowrap;
+  flex-direction: row;
   background-color: rgb(233, 255, 248);
   justify-content: space-evenly;
   align-items: center;
   flex-grow: 10;
 }
 
-.Message{
-  font-size: 40px;
-}
-
-.Form{
-  background-color:rgb(247, 255, 252);
+.Result{
+  font-size: 20px;
+  width: 500px;
 }
 
 .Form > button{
@@ -36,22 +38,26 @@
   display: flex;
 }
 
-.Form-radio{
-  padding: 10px 10px 10px 10px
+.Form-name > input{
+  min-width: 180px;
+  line-height: 25px;
 }
 
-.Result{
-  background-color: rgb(247, 255, 252);
-  width: 100px;
-  margin: 10px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
+.Form-gender > select{
+  font-size: 20px;
+  background-color: #f9f9f9;
+  min-width: 180px;
+  padding: 3px 3px;
+  font-family: monospace;
+}
+
+.Form-radio{
+  padding: 10px 10px 10px 10px;
+  font-size: 20px;
 }
 
 .Footer{
   background-color: rgb(171, 236, 236);
   height: 100px;
   bottom: 0;
-  flex-grow: 0.5;
 }

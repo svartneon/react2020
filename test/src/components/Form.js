@@ -7,20 +7,40 @@ import air from './../images/air.svg';
 
 function Form(props) {
 
-    return (
-      <form className="Form" onSubmit={props.submitHandler}>
-        <div className="Form-elements">
-            <RadioButton image={fire} text="fire" elementHandler={props.elementHandler} element={props.element}/>
-            <RadioButton image={earth} text="earth" elementHandler={props.elementHandler} element={props.element}/>
-            <RadioButton image={water} text="water" elementHandler={props.elementHandler} element={props.element}/>
-            <RadioButton image={air} text="air" elementHandler={props.elementHandler} element={props.element}/>
-        </div>
-        <button type="submit" className="Button">
-            Generate
+  return (
+    <form className="Form" onSubmit={props.submitHandler}>
+      <div className="Form-elements">
+        <RadioButton image={fire} text="Fire" elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={earth} text="Earth" elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={water} text="Water" elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={air} text="Air" elementHandler={props.elementHandler} element={props.element} />
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <div className="Form-gender">
+        <select onChange={props.genderHandler} defaultValue={props.gender}>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <div className="Form-name">
+        <label>Monster Name</label>
+        <br/>
+        <input value={props.name} onChange={props.nameHandler}></input>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <button type="submit" className="Button">
+        Generate
         </button>
-      </form>
-  
-    );
-  }
+    </form>
 
-  export default Form;
+  );
+}
+
+export default Form;
