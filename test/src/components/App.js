@@ -20,6 +20,10 @@ function App() {
   const handleGenderChange = (event) => setGender(event.target.value);
   const handleNameChange = (event) => setName(event.target.value);
 
+  React.useEffect(() => {
+    document.title = `${element} Monster`;
+  });
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -79,21 +83,24 @@ function App() {
       "image": <img src={water_female} alt="result" />,
       "type": " the traitorous mermaid."
     },
-    { "element": "Water", 
-    "gender": "Male", 
-    "image": <img src={water_male} alt="result" />,
-    "type": " bigfoot's baby brother."
-   },
-    { "element": "Air", 
-    "gender": "Female", 
-    "image": <img src={air_female} alt="result" />,
-    "type": " the tempestuous pixie."
-   },
-    { "element": "Air", 
-    "gender": "Male", 
-    "image": <img src={air_male} alt="result" />,
-    "type": " the judgemental angel."
-   }
+    {
+      "element": "Water",
+      "gender": "Male",
+      "image": <img src={water_male} alt="result" />,
+      "type": " bigfoot's baby brother."
+    },
+    {
+      "element": "Air",
+      "gender": "Female",
+      "image": <img src={air_female} alt="result" />,
+      "type": " the tempestuous pixie."
+    },
+    {
+      "element": "Air",
+      "gender": "Male",
+      "image": <img src={air_male} alt="result" />,
+      "type": " the judgemental angel."
+    }
   ];
 
   return (
@@ -113,6 +120,13 @@ function App() {
         </div>
       </div>
       <footer className="Footer">
+        Images by  
+        <a href="https://pixabay.com/users/openclipart-vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=147719">OpenClipart-Vectors</a>,
+        <a href="https://pixabay.com/users/endresz-3286579/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1663243">Mária Endrész</a>,
+        <a href="https://pixabay.com/users/pandannaimagen-10193585/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4378680">Pandanna Imagen</a>,
+        <a href="https://pixabay.com/users/gorkhs-268986/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3757569">Gorkhs</a> and 
+        <a href="https://pixabay.com/users/clker-free-vector-images-3736/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=40860">Clker-Free-Vector-Images</a>
+        from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=147719">Pixabay</a>
       </footer>
     </div>
   );
