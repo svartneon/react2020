@@ -1,0 +1,73 @@
+
+.Wrapper{
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  height: 100vh;
+}
+
+.Header{
+  background-color: rgb(171, 236, 236);
+  height: 100px;
+  font-size: 50px;  
+  text-align: center;
+  padding-top: 60px;
+  color: rgb(83, 99, 99);
+}
+
+.Header > h3{
+  font-size: 20px;
+}
+
+.Body {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  background-color: rgb(233, 255, 248);
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 10;
+}
+
+.Result{
+  font-size: 20px;
+  width: 500px;
+}
+
+.Form > button{
+  float: right;
+}
+
+.Form-elements{
+  display: flex;
+}
+
+.Form-name > input{
+  min-width: 180px;
+  line-height: 25px;
+}
+
+.Form-gender > select{
+  font-size: 20px;
+  background-color: #f9f9f9;
+  min-width: 180px;
+  padding: 3px 3px;
+  font-family: monospace;
+}
+
+.Form-radio{
+  padding: 10px 10px 10px 10px;
+  font-size: 20px;
+}
+
+.Footer{
+  background-color: rgb(171, 236, 236);
+  height: 100px;
+  bottom: 0;
+  align-items: center;
+}
+
+.Footer > p{
+  text-align: center;
+  opacity: 50%;
+}
