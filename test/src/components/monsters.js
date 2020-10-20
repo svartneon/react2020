@@ -60,6 +60,5 @@ export function monsters() {
         "type": " the judgemental angel."
       }
     ]);
-
 }
 

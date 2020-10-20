@@ -22,7 +22,6 @@ function App() {
 
   const monsterList = monsters();
 
-
   function handleSubmit(event) {
     event.preventDefault();
     setCount(count + 1);
