@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Form from './Form.js';
 import Footer from './Footer.js';
 import Monster from './Monster.js';
-import { monsters } from './monsters.js';
+import { monsters } from '../data/monsters.js';
 import './../styles/App.css';
 
 function App() {
