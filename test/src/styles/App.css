@@ -34,12 +34,23 @@
   width: 500px;
 }
 
+#opponent{
+  filter: contrast(0%);
+}
+
+.Form{
+  border:  rgb(197, 228, 218) solid 20px;
+  background-color: rgb(197, 228, 218);
+}
+
 .Form > button{
   float: right;
 }
 
 .Form-elements{
   display: flex;
+  flex-wrap: wrap;
+  max-width: 530px;
 }
 
 .Form-name > input{
@@ -56,8 +67,13 @@
 }
 
 .Form-radio{
-  padding: 10px 10px 10px 10px;
-  font-size: 20px;
+  font-size: 15px;
+  max-width: 105px;  
+  padding-top: 10px;
+}
+
+.Form-radio-image{
+  width: 50%;
 }
 
 .Footer{

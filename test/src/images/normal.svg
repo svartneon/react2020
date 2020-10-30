@@ -11,9 +11,9 @@
    version="1.1"
    id="svg18"
    width="175.22624"
-   height="172.57129"
-   viewBox="0 0 175.22624 172.57129"
-   sodipodi:docname="water.svg"
+   height="166.97879"
+   viewBox="0 0 175.22624 166.97879"
+   sodipodi:docname="normal.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata24">
@@ -31,12 +31,12 @@
      id="defs22">
     <clipPath
        clipPathUnits="userSpaceOnUse"
-       id="clipPath46">
+       id="clipPath70">
       <ellipse
          style="fill:#ff0000;fill-rule:evenodd"
-         id="ellipse48"
-         cx="464.61502"
-         cy="89.825577"
+         id="ellipse72"
+         cx="658.60559"
+         cy="276.30685"
          rx="87.613121"
          ry="86.285645" />
     </clipPath>
@@ -54,9 +54,9 @@
      inkscape:window-height="1017"
      id="namedview20"
      showgrid="false"
-     inkscape:zoom="1.1299678"
-     inkscape:cx="61.342867"
-     inkscape:cy="174.96007"
+     inkscape:zoom="0.79900788"
+     inkscape:cx="500.65237"
+     inkscape:cy="-69.337616"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -65,7 +65,7 @@
      inkscape:groupmode="layer"
      inkscape:label="Image"
      id="g26"
-     transform="translate(-377.0019,-3.5399323)">
+     transform="translate(-570.99247,-190.02121)">
     <image
        width="931"
        height="357"
@@ -1653,6 +1653,6 @@ ESNGjBgxYsSIEbvJMCi+lhvti8CRd8gglRUaZR0P6WU9CtMVaiaTqVcMQnA5BL/iMTM421qUIYs9
 nCbtVLxTIsd9q3gEDc7Gkqt5b/t/mz2UWnVpwuwAAAAASUVORK5CYII=
 "
        id="image28"
-       clip-path="url(#clipPath46)" />
+       clip-path="url(#clipPath70)" />
   </g>
 </svg>

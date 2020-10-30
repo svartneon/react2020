@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import RadioButton from './RadioButton.js';
-import fire from './../images/fire.svg';
-import earth from './../images/earth.svg';
+import grass from './../images/grass.svg';
+import normal from './../images/normal.svg';
 import water from './../images/water.svg';
-import air from './../images/air.svg';
+import electric from './../images/electric.svg';
+import dark from './../images/dark.svg';
+import dragon from './../images/dragon.svg';
+import fire from './../images/fire.svg';
+import psychic from './../images/psychic.svg';
+import steel from './../images/steel.svg';
+import fighting from './../images/fighting.svg';
 import DropDownList from './DropDownList.js';
 
 function Form(props) {
@@ -29,10 +35,16 @@ function Form(props) {
       <br />
       <br />
       <div className="Form-elements">
-        <RadioButton image={fire} text="Fire" elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={earth} text="Earth" elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={water} text="Water" elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={air} text="Air" elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={grass} text="Grass" value={12} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={dark} text="Dark" value={17} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={water} text="Water" value={11} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={electric} text="Electric" value={13} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={normal} text="Normal" value={1} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={dragon} text="Dragon" value={16} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={fire} text="Fire" value={10} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={psychic} text="Psychic" value={14} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={steel} text="Steel" value={9} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={fighting} text="Fighting" value={2} elementHandler={props.elementHandler} element={props.element} />
       </div>
       <br />
       <br />
