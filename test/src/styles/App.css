@@ -31,26 +31,102 @@
 
 .Result{
   font-size: 20px;
-  width: 500px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-#opponent{
+.Result > div{
+  display: flex;
+  flex-direction: column-reverse;
+  height: 500px;  
+  width: 450px;  
+  background-color: rgb(197, 228, 218);
+  border-radius: 300px;
+  border:  rgb(197, 228, 218) solid 40px;
+  align-items: center;
+}
+
+#fighter{
+  height: 400px;
+  width: 400px;
+}
+
+.Opponent-hidden{
+  font-size: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Opponent-hidden > div{
+  display: flex;
+  flex-direction: column-reverse;
+  height: 500px;  
+  width: 450px;  
+  background-color: rgb(197, 228, 218);
+  border-radius: 300px;
+  border:  rgb(197, 228, 218) solid 40px;
+  align-items: center;
+}
+
+.Opponent-hidden > div > p{
+  visibility: hidden;
+}
+
+.Opponent-hidden > div >img{
   filter: contrast(0%);
+  width: 400px;
+  height: 400px;
+}
+
+.Opponent-visible{
+  font-size: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Opponent-visible > div{
+  display: flex;
+  flex-direction: column-reverse;
+  height: 500px;  
+  width: 450px;  
+  background-color: rgb(197, 228, 218);
+  border-radius: 300px;
+  border:  rgb(197, 228, 218) solid 40px;
+  align-items: center;
+}
+
+.Opponent-visible > div > p{
+  visibility: visible;
+}
+
+.Opponent-visible > div >img{
+  filter: contrast(100%);
+  width: 400px;
+  height: 400px;
 }
 
 .Form{
-  border:  rgb(197, 228, 218) solid 20px;
+  border:  rgb(197, 228, 218) solid;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: rgb(197, 228, 218);
+  border-radius: 100px;
 }
 
-.Form > button{
+.Button{
   float: right;
+  width: 120px
 }
 
 .Form-elements{
   display: flex;
   flex-wrap: wrap;
-  max-width: 530px;
+  max-width: 510px;
 }
 
 .Form-name > input{
@@ -67,13 +143,14 @@
 }
 
 .Form-radio{
-  font-size: 15px;
+  font-size: 13px;
   max-width: 105px;  
   padding-top: 10px;
+  padding-left: 5px;
 }
 
 .Form-radio-image{
-  width: 50%;
+  width: 75px;
 }
 
 .Footer{
