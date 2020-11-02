@@ -12,11 +12,22 @@
   font-size: 50px;  
   text-align: center;
   padding-top: 60px;
+  padding-bottom: 20px;
   color: rgb(83, 99, 99);
 }
 
-.Header > h3{
-  font-size: 20px;
+
+.Header > div{
+  display: flex;
+  flex-direction: row;
+  float: right;
+  padding-right: 50px;
+
+}
+
+.Header > div >img{
+  width: 30px;
+  padding: 5px;
 }
 
 .Body {
@@ -151,6 +162,7 @@
 
 .Form-radio-image{
   width: 75px;
+  height: 75px;
 }
 
 .Footer{

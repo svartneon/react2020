@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
+import translations from '../locales/translations.js';
+import LanguageContext from './LanguageContext.js';
 import RadioButton from './RadioButton.js';
 import DropDownList from './DropDownList.js';
-import Button from './../styles/Button.js'
+import Button from './Button.js'
 
 import normal from './../images/normal.svg';
 import fighting from './../images/fighting.svg';
@@ -24,6 +26,7 @@ import fairy from './../images/fairy.svg';
 
 function Form(props) {
 
+  const locale = useContext(LanguageContext)
   const nameInput = useRef(null);
 
   useEffect(() => {
@@ -36,9 +39,11 @@ function Form(props) {
 
   return (
     <form className="Form" onSubmit={props.submitHandler}>
-      <h2>Generate your Fighter</h2>
+      <h2>{translations[locale]['generate-your-pokemon']}</h2>
       <div className="Form-name">
-        <label>Custom Name (optional)</label>
+        <label>
+          {translations[locale]['custom-name']}
+        </label>
         <br />
         <input ref={nameInput} value={props.name} onChange={props.nameHandler}></input>
       </div>
@@ -46,31 +51,34 @@ function Form(props) {
       <br />
       <br />
       <div className="Form-elements">
-        <RadioButton image={normal} text="Normal" value={1} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={fighting} text="Fighting" value={2} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={flying} text="Flying" value={3} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={poison} text="Poison" value={4} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={ground} text="Ground" value={5} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={rock} text="Rock" value={6} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={bug} text="Bug" value={7} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={ghost} text="Ghost" value={8} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={steel} text="Steel" value={9} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={fire} text="Fire" value={10} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={water} text="Water" value={11} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={grass} text="Grass" value={12} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={electric} text="Electric" value={13} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={psychic} text="Psychic" value={14} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={ice} text="Ice" value={15} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={dragon} text="Dragon" value={16} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={dark} text="Dark" value={17} elementHandler={props.elementHandler} element={props.element} />
-        <RadioButton image={fairy} text="Fairy" value={18} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={normal}   text={translations[locale]['normal']}   value={1}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={fighting} text={translations[locale]['fighting']} value={2}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={flying}   text={translations[locale]['flying']}   value={3}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={poison}   text={translations[locale]['poison']}   value={4}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={ground}   text={translations[locale]['ground']}   value={5}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={rock}     text={translations[locale]['rock']}     value={6}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={bug}      text={translations[locale]['bug']}      value={7}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={ghost}    text={translations[locale]['ghost']}    value={8}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={steel}    text={translations[locale]['steel']}    value={9}  elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={fire}     text={translations[locale]['fire']}     value={10} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={water}    text={translations[locale]['water']}    value={11} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={grass}    text={translations[locale]['grass']}    value={12} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={electric} text={translations[locale]['electric']} value={13} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={psychic}  text={translations[locale]['psychic']}  value={14} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={ice}      text={translations[locale]['ice']}      value={15} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={dragon}   text={translations[locale]['dragon']}   value={16} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={dark}     text={translations[locale]['dark']}     value={17} elementHandler={props.elementHandler} element={props.element} />
+        <RadioButton image={fairy}    text={translations[locale]['fairy']}    value={18} elementHandler={props.elementHandler} element={props.element} />
       </div>
       <br />
       <br />
       <br />
       <div className="Form-gender">
         <DropDownList
-          options={["male", "female"]}
+          options={[
+            translations[locale]['male'], 
+            translations[locale]['female']
+          ]}
           gender={props.gender}
           genderHandler={props.genderHandler}
         />
@@ -79,7 +87,7 @@ function Form(props) {
       <br />
       <br />
       <div className="Button">
-        <Button onClick={reFocus} type="submit"/>
+        <Button onClick={reFocus} type="submit" text={translations[locale]['generate']}/>
       </div>
     </form>
 

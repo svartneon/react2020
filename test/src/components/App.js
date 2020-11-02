@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import React, { useEffect, useState} from 'react';
+import axios from 'axios';
 import Form from './Form.js';
 import Footer from './Footer.js';
 import Pokemon from './Pokemon.js';
 import './../styles/App.css';
+import translations from '../locales/translations.js';
+import LanguageContext from './LanguageContext.js';
+import swe from './../images/swe.svg'
+import eng from './../images/eng.svg'
+
 
 function App() {
 
-  const [element, setElement] = useState(12);
+  const [element, setElement] = useState(1);
   const [gender, setGender] = useState("female");
   const [name, setName] = useState("");
   const [count, setCount] = useState(0);
   const [classNameOpponent, setclassNameOpponent] = useState("Opponent-hidden");
   const [opponent, setOpponent] = useState({});
   const [fighter, setFighter] = useState({});
+  const [locale, setLocale] = useState("en");
+
   const handleElementChange = (event) => setElement(event.target.value);
   const handleGenderChange = (event) => setGender(event.target.value);
   const handleNameChange = (event) => setName(event.target.value);
+
+
 
   useEffect(() => {
     document.title = count + " pokémons generated";
@@ -83,16 +92,21 @@ function App() {
     console.log(typeList);
     let types = "";
     for (let i = 0; i < typeList.length; i++) {
-      types += " " + typeList[i].type.name + ","
+      types += " " + translations[locale][typeList[i].type.name] + ","
     }
     //remove last comma
     return types.slice(0, -1);
   }
 
   return (
+    <LanguageContext.Provider value={locale}>
     <div className="Wrapper">
       <header className="Header">
         Pokémon Battle
+        <div>
+          <img src={eng} onClick={() => setLocale('en')} flag="swe"/>
+          <img src={swe} onClick={() => setLocale('sv')} flag="eng"/>
+        </div>    
       </header>
       <div className="Body">
         <Form
@@ -102,7 +116,7 @@ function App() {
           name={name} nameHandler={handleNameChange}
         />
         <div className="Result">
-          <h2>Fighter</h2>
+          <h2>{translations[locale]['your-pokemon']}</h2>
           <Pokemon pokemon={fighter} />
         </div>
         <div className={classNameOpponent}>
@@ -112,6 +126,7 @@ function App() {
       </div>
       <Footer />
     </div>
+    </LanguageContext.Provider>
   );
 }
 

@@ -1,0 +1,28 @@
+{
+    "generate": "Generera",
+    "your-pokemon": "Din Pokémon",
+    "generate-your-pokemon": "Generera din Pokémon",
+    "custom-name": "Eget Namn (valfritt)",
+
+    "female": "kvinna",
+    "male": "man",
+
+    "grass": "gräs",
+    "water": "vatten",
+    "fire": "eld",
+    "steel": "stål",
+    "ghost": "spöke",
+    "flying": "flygande",
+    "dark": "mörker",
+    "psychic": "psykisk",
+    "fighting": "kämpe",
+    "rock": "sten",
+    "normal": "normal",
+    "bug": "insekt",
+    "poison": "gift",
+    "ground": "mark",
+    "ice": "is",
+    "dragon": "drake",
+    "fairy": "älva",
+    "electric": "elektrisk"
+}

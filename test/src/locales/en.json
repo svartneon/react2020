@@ -1,0 +1,28 @@
+{
+    "generate": "Generate",
+    "your-pokemon": "Your Pokémon",
+    "generate-your-pokemon": "Generate your Pokémon",
+    "custom-name": "Custom Name (optional)",
+
+    "female": "female",
+    "male": "male",
+
+    "grass": "grass",
+    "water": "water",
+    "fire": "fire",
+    "steel": "steel",
+    "ghost": "ghost",
+    "flying": "flying",
+    "dark": "dark",
+    "psychic": "psychic",
+    "fighting": "fighting",
+    "rock": "rock",
+    "normal": "normal",
+    "bug": "bug",
+    "poison": "poison",
+    "ground": "ground",
+    "ice": "ice",
+    "dragon": "dragon",
+    "fairy": "fairy",
+    "electric": "electric"
+}
