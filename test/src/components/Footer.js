@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import translations from '../locales/translations.js';
+import LanguageContext from './LanguageContext.js';
+
+export const P = styled.p``;
+
+export const StyledFooter = styled.footer`
+  background-color: rgb(171, 236, 236);
+  height: 100px;
+  bottom: 0;
+  align-items: center;
+  ${P.selector}{
+    text-align: center;
+    opacity: 50%;
+  }
+`
 
 function Footer() {
+
+  const locale = useContext(LanguageContext);
+
   return (
-    <footer className="Footer">
+    <StyledFooter>
       <br />
       <br />
-     <p>Icon types by&nbsp;
+     <p>{translations[locale]["credit"]}&nbsp;
         <a href="https://www.vecteezy.com/free-vector/pokemon-type">Pokemon Type Vectors by Vecteezy</a>&nbsp; 
       </p>
-    </footer>
+    </StyledFooter>
   );
 }
 

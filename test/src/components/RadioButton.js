@@ -1,11 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledRadio = styled.div`
+  font-size: 13px;
+  max-width: 105px;  
+  padding-top: 10px;
+  padding-left: 5px;
+`
+const StyledImg = styled.img`
+  width: 75px;
+  height: 75px;
+`
 
 function RadioButton(props) {
 
   return (
-    <div className="Form-radio">
+    <StyledRadio>
       <label>
-        <img src={props.image} alt={props.text} className="Form-radio-image"/>
+        <StyledImg src={props.image} alt={props.text}/>
         <br />
         {props.text}
         <input
@@ -15,7 +27,7 @@ function RadioButton(props) {
           onChange={props.elementHandler}
         />
       </label>
-    </div>
+    </StyledRadio>
   );
 }
 

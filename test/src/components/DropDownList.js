@@ -1,4 +1,13 @@
 import React from 'react'
+import styled from 'styled-components';
+
+export const StyledSelect = styled.select`
+font-size: 20px;
+background-color: #f9f9f9;
+min-width: 180px;
+padding: 3px 3px;
+font-family: monospace;
+`
 
 function DropDownList(props) {
 
@@ -11,9 +20,9 @@ function DropDownList(props) {
     }
 
     return (
-        <select onChange={props.genderHandler} defaultValue={props.gender}>
+        <StyledSelect onChange={props.genderHandler} defaultValue={props.gender}>
             {listOptions}
-        </select>
+        </StyledSelect>
     );
 }
 
