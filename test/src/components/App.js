@@ -2,35 +2,13 @@ import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import Form from './Form.js';
 import Footer from './Footer.js';
-import styled from 'styled-components';
 import Pokemon from './Pokemon.js';
 import './../styles/App.css';
 import translations from '../locales/translations.js';
 import LanguageContext from './LanguageContext.js';
-import swe from './../images/swe.svg'
-import eng from './../images/eng.svg'
-
-
-
-export const StyledHeader = styled.header`
-display: flex;
-align-items: center;
-background-color: rgb(171, 236, 236);
-height: 100px;
-font-size: 20px;  
-padding-top: 60px;
-padding-bottom: 20px;
-color: rgb(83, 99, 99);
-flex-direction: row;
-.flags{
-  float: right;
-}
-  .flags > .flag{
-    width: 30px;
-    padding: 5px;
-  }
-`
-
+import StyledHeader from './StyledHeader.js';
+import swe from './../images/swe.svg';
+import eng from './../images/eng.svg';
 
 function App() {
 
@@ -123,11 +101,11 @@ function App() {
   return (
     <LanguageContext.Provider value={locale}>
     <div className="Wrapper">
-    <StyledHeader>
+    <StyledHeader className="Header">
       <h1>{translations[locale]['pokemon-battle']}</h1>
-        <div className="flags">
-          <img src={eng} alt="eng" onClick={() => setLocale('en')} flag="swe" className="flag"/>
-          <img src={swe} alt="swe" onClick={() => setLocale('sv')} flag="eng" className="flag"/>
+        <div>
+          <img src={eng} alt="eng" onClick={() => setLocale('en')} flag="swe"/>
+          <img src={swe} alt="swe" onClick={() => setLocale('sv')} flag="eng"/>
         </div> 
     </StyledHeader>
       <div className="Body">

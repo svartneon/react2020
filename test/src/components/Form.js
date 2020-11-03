@@ -26,7 +26,7 @@ import dark from './../images/dark.svg';
 import fairy from './../images/fairy.svg';
 
 
-export const StyledForm = styled.form`
+const StyledForm = styled.form`
   border:  rgb(197, 228, 218) solid;
   padding-left: 20px;
   padding-right: 10px;
@@ -35,11 +35,11 @@ export const StyledForm = styled.form`
   background-color: rgb(197, 228, 218);
   border-radius: 100px;
 `
-export const StyledInput = styled.input`
+const StyledInput = styled.input`
   min-width: 180px;
   line-height: 25px;
 `
-export const StyledDivTypes = styled.div`
+const StyledDivTypes = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-width: 510px;

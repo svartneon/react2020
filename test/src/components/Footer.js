@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import translations from '../locales/translations.js';
 import LanguageContext from './LanguageContext.js';
 
-export const P = styled.p``;
+const P = styled.p``;
 
-export const StyledFooter = styled.footer`
+const StyledFooter = styled.footer`
   background-color: rgb(171, 236, 236);
   height: 100px;
   bottom: 0;
-  align-items: center;
   ${P.selector}{
     text-align: center;
     opacity: 50%;
