@@ -1,12 +1,13 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Form from './Form.js';
 import Footer from './Footer.js';
 import Pokemon from './Pokemon.js';
-import './../styles/App.css';
 import translations from '../locales/translations.js';
 import LanguageContext from './LanguageContext.js';
 import StyledHeader from './StyledHeader.js';
+import StyledWrapper from './StyledWrapper.js';
+import StyledBody from './StyledBody.js';
 import swe from './../images/swe.svg';
 import eng from './../images/eng.svg';
 
@@ -16,7 +17,7 @@ function App() {
   const [gender, setGender] = useState("female");
   const [name, setName] = useState("");
   const [count, setCount] = useState(0);
-  const [classNameOpponent, setclassNameOpponent] = useState("Opponent-hidden");
+  const [showOpponent, setShowOpponent] = useState(false);
   const [opponent, setOpponent] = useState({});
   const [fighter, setFighter] = useState({});
   const [locale, setLocale] = useState("en");
@@ -40,7 +41,7 @@ function App() {
     event.preventDefault();
     setCount(count + 1);
     fetchAllPokemonOfType(element);
-    setclassNameOpponent("Opponent-visible");
+    setShowOpponent(true);
   }
 
   function fetchAllPokemonOfType() {
@@ -100,32 +101,36 @@ function App() {
 
   return (
     <LanguageContext.Provider value={locale}>
-    <div className="Wrapper">
-    <StyledHeader className="Header">
-      <h1>{translations[locale]['pokemon-battle']}</h1>
-        <div>
-          <img src={eng} alt="eng" onClick={() => setLocale('en')} flag="swe"/>
-          <img src={swe} alt="swe" onClick={() => setLocale('sv')} flag="eng"/>
-        </div> 
-    </StyledHeader>
-      <div className="Body">
-        <Form
-          element={element} elementHandler={handleElementChange}
-          submitHandler={handleSubmit}
-          gender={gender} genderHandler={handleGenderChange}
-          name={name} nameHandler={handleNameChange}
-        />
-        <div className="Result">
-          <h2>{translations[locale]['your-pokemon']}</h2>
-          <Pokemon pokemon={fighter} />
-        </div>
-        <div className={classNameOpponent}>
-          <h2>{translations[locale]['opponent']}</h2>
-          <Pokemon pokemon={opponent} />
-        </div>
-      </div>
-      <Footer />
-    </div>
+      <StyledWrapper>
+        <StyledHeader className="Header">
+          <h1>{translations[locale]['pokemon-battle']}</h1>
+          <div>
+            <img src={eng} alt="eng" onClick={() => setLocale('en')} flag="swe" />
+            <img src={swe} alt="swe" onClick={() => setLocale('sv')} flag="eng" />
+          </div>
+        </StyledHeader>
+        <StyledBody>
+          <Form
+            element={element} elementHandler={handleElementChange}
+            submitHandler={handleSubmit}
+            gender={gender} genderHandler={handleGenderChange}
+            name={name} nameHandler={handleNameChange}
+          />
+          <Pokemon
+            pokemon={fighter}
+            line={translations[locale]['your-pokemon']}
+            contrast="contrast(100%)"
+            visibility="visible"
+          />
+          <Pokemon
+            pokemon={opponent}
+            line={translations[locale]['opponent']}
+            contrast={showOpponent ? "contrast(100%)" : "contrast(0%)"}
+            visibility={showOpponent ? "visible" : "hidden"}
+          />
+        </StyledBody>
+        <Footer />
+      </StyledWrapper>
     </LanguageContext.Provider>
   );
 }
