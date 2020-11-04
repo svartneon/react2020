@@ -6,6 +6,10 @@
     "credit": "Typ-ikoner från",
     "pokemon-battle": "Pokémon-utmaning",
     "opponent": "Utmanare",
+    "name": "namn",
+    "species": "art",
+    "types": "typ(er)",
+    "gender": "kön",
 
     "female": "kvinna",
     "male": "man",

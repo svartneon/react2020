@@ -6,6 +6,10 @@
     "credit": "Type Icons by",
     "pokemon-battle": "Pokémon Battle",
     "opponent": "Opponent",
+    "name": "name",
+    "species": "species",
+    "types": "type(s)",
+    "gender": "gender",
 
     "female": "female",
     "male": "male",

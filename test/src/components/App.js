@@ -4,6 +4,8 @@ import Form from './Form.js';
 import Footer from './Footer.js';
 import Pokemon from './Pokemon.js';
 import translations from '../locales/translations.js';
+import {formReducer, initialForm} from '../reducers/formReducer.js';
+import {pokemonReducer, initialFighter, initialOpponent} from '../reducers/pokemonReducer.js';
 import LanguageContext from './LanguageContext.js';
 import StyledHeader from './StyledHeader.js';
 import StyledWrapper from './StyledWrapper.js';
@@ -13,18 +15,9 @@ import eng from './../images/eng.svg';
 
 function App() {
 
-  const [element, setElement] = useState(1);
-  const [gender, setGender] = useState("female");
-  const [name, setName] = useState("");
   const [count, setCount] = useState(0);
   const [showOpponent, setShowOpponent] = useState(false);
-  const [opponent, setOpponent] = useState({});
-  const [fighter, setFighter] = useState({});
   const [locale, setLocale] = useState("en");
-
-  const handleElementChange = (event) => setElement(event.target.value);
-  const handleGenderChange = (event) => setGender(event.target.value);
-  const handleNameChange = (event) => setName(event.target.value);
 
   useEffect(() => {
     document.title = count + " pokémons generated";
@@ -34,36 +27,19 @@ function App() {
     fetchRandomPokemon();
   }, []);
 
-  const formReducer = (state, action) => {
-    switch (action.type) {
-      case 'name':
-        return { ...state, name: action.value };
-      case 'type':
-        return { ...state, type: action.value };
-      case 'gender':
-        return { ...state, gender: action.value };
-      default:
-        throw new Error('Unexpected action');
-    }
-  };
-
-  let initialForm = {
-    name: "",
-    type: "1",
-    gender: "female",
-  };
-
-  const [fState, fReducer] = useReducer(formReducer, initialForm);
+  const [formState, fReducer] = useReducer(formReducer, initialForm);
+  const [fighterState, fighterReducer] = useReducer(pokemonReducer, initialFighter);
+  const [opponentState, opponentReducer] = useReducer(pokemonReducer, initialOpponent);
 
   function handleSubmit(event) {
     event.preventDefault();
     setCount(count + 1);
-    fetchAllPokemonOfType(element);
+    fetchAllPokemonOfType(formState.type);
     setShowOpponent(true);
   }
 
   async function fetchAllPokemonOfType() {
-    await axios.get("https://pokeapi.co/api/v2/type/" + fState.type)
+    await axios.get("https://pokeapi.co/api/v2/type/" + formState.type)
       .then(res => {
         fetchRandomPokemonOfType(res.data);
       })
@@ -77,15 +53,18 @@ function App() {
     await axios.get(pokemon.pokemon.url)
       .then(res => {
         if (res.data.sprites.other.dream_world.front_default) {
-          setFighter({
-            ...fighter,
-            name: fState.name,
-            image: <img src={res.data.sprites.other.dream_world.front_default} alt="Your Fighter" id="fighter" />,
-            type: "type(s):" + getAllTypes(res.data.types),
-            gender: "gender: " + fState.gender,
-            species: "species: " + res.data.species.name,
-            hp: "hp: " + res.data.stats[0].base_stat
-          });
+          fighterReducer({type: "name", payload: formState.name});
+          fighterReducer({type: "species", payload: res.data.species.name});
+          fighterReducer({type: "hp", payload: res.data.stats[0].base_stat});
+          fighterReducer({type: "primarytype", payload: res.data.types[0].type.name});        
+          fighterReducer({type: "gender", payload: formState.gender});
+          fighterReducer({type: "image", payload: <img src={res.data.sprites.other.dream_world.front_default} alt="Your Pokemon" />});
+          if(res.data.types[1]){
+            fighterReducer({type: "secondarytype", payload: res.data.types[1].type.name});
+          }
+          else{
+            fighterReducer({type: "secondarytype", payload: ""});
+          }
         }
         else {
           //if the pokemon has no image, get another one
@@ -98,25 +77,21 @@ function App() {
   async function fetchRandomPokemon() {
     await axios.get("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * (600)))
       .then(res => {
-        setOpponent({
-          ...opponent,
-          image: <img src={res.data.sprites.other.dream_world.front_default} alt="Your Opponent" />,
-          type: "type(s):" + getAllTypes(res.data.types),
-          gender: "gender: " + gender,
-          species: "species: " + res.data.species.name,
-          hp: "hp: " + res.data.stats[0].base_stat
-        })
+        opponentReducer({type: "species", payload: res.data.species.name});
+        opponentReducer({type: "hp", payload: res.data.stats[0].base_stat});
+        opponentReducer({type: "primarytype", payload: res.data.types[0].type.name});        
+        opponentReducer({type: "gender", payload: randomGender()});
+        opponentReducer({type: "image", payload: <img src={res.data.sprites.other.dream_world.front_default} alt="Your Opponent" />});
+        if(res.data.types[1]){
+          opponentReducer({type: "secondarytype", payload: res.data.types[1].type.name});
+        }
       })
       .catch(error => console.log(error));
   }
 
-  function getAllTypes(typeList) {
-    let types = "";
-    for (let i = 0; i < typeList.length; i++) {
-      types += " " + translations[locale][typeList[i].type.name] + ","
-    }
-    //remove last comma
-    return types.slice(0, -1);
+  function randomGender(){
+    const gender = ["male", "female"];
+    return(gender[Math.floor(Math.random() * (2))]);
   }
 
   return (
@@ -131,21 +106,18 @@ function App() {
         </StyledHeader>
         <StyledBody>
           <Form
-            element={element} elementHandler={handleElementChange}
             submitHandler={handleSubmit}
-            gender={gender} genderHandler={handleGenderChange}
-            name={name} nameHandler={handleNameChange}
             formReducer={fReducer}
-            formState={fState}
+            formState={formState}
           />
           <Pokemon
-            pokemon={fighter}
+            pokemon={fighterState}
             line={translations[locale]['your-pokemon']}
             contrast="contrast(100%)"
-            visibility="visible"
+            visibility={showOpponent ? "visible" : "hidden"}
           />
           <Pokemon
-            pokemon={opponent}
+            pokemon={opponentState}
             line={translations[locale]['opponent']}
             contrast={showOpponent ? "contrast(100%)" : "contrast(0%)"}
             visibility={showOpponent ? "visible" : "hidden"}

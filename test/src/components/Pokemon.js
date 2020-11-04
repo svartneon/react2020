@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
+import translations from '../locales/translations.js';
+import LanguageContext from './LanguageContext.js';
+
 
 const StyledPokemon = styled.div`
     font-size: 20px;
@@ -27,6 +30,17 @@ const StyledPokemon = styled.div`
 `
 
 function Pokemon(props) {
+
+    const locale = useContext(LanguageContext);
+    let comma;
+    
+    if("" === props.pokemon.secondarytype){
+        comma = "";
+    }
+    else{
+        comma = ",";
+    }
+
     return (
         <StyledPokemon filter={props.contrast} visibility={props.visibility}>
             <h2>{props.line}</h2>
@@ -35,13 +49,13 @@ function Pokemon(props) {
                 <p>
                     {props.pokemon.name}
                     <br />
-                    {props.pokemon.species}
+                    {translations[locale]["species"]}: {props.pokemon.species}
                     <br />
-                    {props.pokemon.type}
+                    {translations[locale]["types"]}: {translations[locale][props.pokemon.primarytype]}{comma} {translations[locale][props.pokemon.secondarytype]}
                     <br />
-                    {props.pokemon.gender}
+                    {translations[locale]["gender"]}: {translations[locale][props.pokemon.gender]}
                     <br />
-                    {props.pokemon.hp}
+                    hp: {props.pokemon.hp}
                 </p>
             </div>
         </StyledPokemon>

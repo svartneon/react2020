@@ -16,7 +16,6 @@ const StyledFooter = styled.footer`
 `
 
 function Footer() {
-
   const locale = useContext(LanguageContext);
 
   return (
