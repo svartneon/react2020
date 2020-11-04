@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import axios from 'axios';
 import Form from './Form.js';
 import Footer from './Footer.js';
@@ -26,8 +26,6 @@ function App() {
   const handleGenderChange = (event) => setGender(event.target.value);
   const handleNameChange = (event) => setName(event.target.value);
 
-
-
   useEffect(() => {
     document.title = count + " pokémons generated";
   }, [count]);
@@ -36,6 +34,26 @@ function App() {
     fetchRandomPokemon();
   }, []);
 
+  const formReducer = (state, action) => {
+    switch (action.type) {
+      case 'name':
+        return { ...state, name: action.value };
+      case 'type':
+        return { ...state, type: action.value };
+      case 'gender':
+        return { ...state, gender: action.value };
+      default:
+        throw new Error('Unexpected action');
+    }
+  };
+
+  let initialForm = {
+    name: "",
+    type: "1",
+    gender: "female",
+  };
+
+  const [fState, fReducer] = useReducer(formReducer, initialForm);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -44,26 +62,27 @@ function App() {
     setShowOpponent(true);
   }
 
-  function fetchAllPokemonOfType() {
-    axios.get("https://pokeapi.co/api/v2/type/" + element)
+  async function fetchAllPokemonOfType() {
+    await axios.get("https://pokeapi.co/api/v2/type/" + fState.type)
       .then(res => {
         fetchRandomPokemonOfType(res.data);
       })
+      .catch(error => console.log(error));
   }
 
-  function fetchRandomPokemonOfType(data) {
+  async function fetchRandomPokemonOfType(data) {
     const randomIndex = Math.floor(Math.random() * (data.pokemon.length - 1));
     const pokemon = data.pokemon[randomIndex];
 
-    axios.get(pokemon.pokemon.url)
+    await axios.get(pokemon.pokemon.url)
       .then(res => {
         if (res.data.sprites.other.dream_world.front_default) {
           setFighter({
             ...fighter,
-            name: name,
+            name: fState.name,
             image: <img src={res.data.sprites.other.dream_world.front_default} alt="Your Fighter" id="fighter" />,
             type: "type(s):" + getAllTypes(res.data.types),
-            gender: "gender: " + gender,
+            gender: "gender: " + fState.gender,
             species: "species: " + res.data.species.name,
             hp: "hp: " + res.data.stats[0].base_stat
           });
@@ -73,10 +92,11 @@ function App() {
           fetchRandomPokemonOfType(data);
         }
       })
+      .catch(error => console.log(error));
   }
 
-  function fetchRandomPokemon() {
-    axios.get("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * (600)))
+  async function fetchRandomPokemon() {
+    await axios.get("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * (600)))
       .then(res => {
         setOpponent({
           ...opponent,
@@ -87,10 +107,10 @@ function App() {
           hp: "hp: " + res.data.stats[0].base_stat
         })
       })
+      .catch(error => console.log(error));
   }
 
   function getAllTypes(typeList) {
-    console.log(typeList);
     let types = "";
     for (let i = 0; i < typeList.length; i++) {
       types += " " + translations[locale][typeList[i].type.name] + ","
@@ -115,6 +135,8 @@ function App() {
             submitHandler={handleSubmit}
             gender={gender} genderHandler={handleGenderChange}
             name={name} nameHandler={handleNameChange}
+            formReducer={fReducer}
+            formState={fState}
           />
           <Pokemon
             pokemon={fighter}

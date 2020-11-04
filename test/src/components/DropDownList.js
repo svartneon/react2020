@@ -8,6 +8,10 @@ min-width: 180px;
 padding: 3px 3px;
 font-family: monospace;
 `
+const gender = ({ value }) => ({
+    type: 'gender',
+    value,
+  });
 
 function DropDownList(props) {
 
@@ -20,7 +24,7 @@ function DropDownList(props) {
     }
 
     return (
-        <StyledSelect onChange={props.genderHandler} defaultValue={props.gender}>
+        <StyledSelect onChange={(text) => props.formReducer(gender({value:text.target.value}))} defaultValue={props.formState.gender}>
             {listOptions}
         </StyledSelect>
     );

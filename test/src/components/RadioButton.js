@@ -14,6 +14,11 @@ const StyledImg = styled.img`
 
 function RadioButton(props) {
 
+  const type = ({ value }) => ({
+    type: 'type',
+    value,
+  });
+
   return (
     <StyledRadio>
       <label>
@@ -23,8 +28,8 @@ function RadioButton(props) {
         <input
           type="radio"
           value={props.value}
-          checked={props.value == props.element}
-          onChange={props.elementHandler}
+          checked={props.value.toString() === props.formState.type}
+          onChange={(radio) => props.formReducer(type({value:radio.target.value}))}
         />
       </label>
     </StyledRadio>
