@@ -4,6 +4,7 @@ import Form from './Form.js';
 import Footer from './Footer.js';
 import Pokemon from './Pokemon.js';
 import translations from '../locales/translations.js';
+import {randomInteger, randomGender} from '../helpers/randomizer.js';
 import {formReducer, initialForm} from '../reducers/formReducer.js';
 import {pokemonReducer, initialFighter, initialOpponent} from '../reducers/pokemonReducer.js';
 import LanguageContext from './LanguageContext.js';
@@ -19,6 +20,10 @@ function App() {
   const [showOpponent, setShowOpponent] = useState(false);
   const [locale, setLocale] = useState("en");
 
+  const [formState, fReducer] = useReducer(formReducer, initialForm);
+  const [fighterState, fighterReducer] = useReducer(pokemonReducer, initialFighter);
+  const [opponentState, opponentReducer] = useReducer(pokemonReducer, initialOpponent);
+
   useEffect(() => {
     document.title = count + " pokémons generated";
   }, [count]);
@@ -26,10 +31,6 @@ function App() {
   useEffect(() => {
     fetchRandomPokemon();
   }, []);
-
-  const [formState, fReducer] = useReducer(formReducer, initialForm);
-  const [fighterState, fighterReducer] = useReducer(pokemonReducer, initialFighter);
-  const [opponentState, opponentReducer] = useReducer(pokemonReducer, initialOpponent);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -47,9 +48,8 @@ function App() {
   }
 
   async function fetchRandomPokemonOfType(data) {
-    const randomIndex = Math.floor(Math.random() * (data.pokemon.length - 1));
-    const pokemon = data.pokemon[randomIndex];
 
+    const pokemon = data.pokemon[randomInteger(0, data.pokemon.length - 1)];
     await axios.get(pokemon.pokemon.url)
       .then(res => {
         if (res.data.sprites.other.dream_world.front_default) {
@@ -75,7 +75,7 @@ function App() {
   }
 
   async function fetchRandomPokemon() {
-    await axios.get("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * (600)))
+    await axios.get("https://pokeapi.co/api/v2/pokemon/" + randomInteger(0, 600))
       .then(res => {
         opponentReducer({type: "species", payload: res.data.species.name});
         opponentReducer({type: "hp", payload: res.data.stats[0].base_stat});
@@ -87,11 +87,6 @@ function App() {
         }
       })
       .catch(error => console.log(error));
-  }
-
-  function randomGender(){
-    const gender = ["male", "female"];
-    return(gender[Math.floor(Math.random() * (2))]);
   }
 
   return (

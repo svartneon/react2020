@@ -19,17 +19,22 @@ function RadioButton(props) {
     value,
   });
 
+  const TypeRadio = React.memo(function TypeRadio({ onChange, value, checked }) {
+    return <input type="radio" value={value} checked={checked} onChange={onChange} />
+  })
+
+  const handleOnChange = React.useCallback((radio) => props.formReducer(type({ value: radio.target.value })), [props]);
+  
   return (
     <StyledRadio>
       <label>
-        <StyledImg src={props.image} alt={props.text}/>
+        <StyledImg src={props.image} alt={props.text} />
         <br />
         {props.text}
-        <input
-          type="radio"
+        <TypeRadio
           value={props.value}
           checked={props.value.toString() === props.formState.type}
-          onChange={(radio) => props.formReducer(type({value:radio.target.value}))}
+          onChange={handleOnChange}
         />
       </label>
     </StyledRadio>

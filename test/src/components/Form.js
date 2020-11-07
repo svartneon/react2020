@@ -62,7 +62,6 @@ function Form(props) {
     type: 'name',
     value,
   });
-
   return (    
     <StyledForm className="Form" onSubmit={props.submitHandler}>
       <h2>{translations[locale]['generate-your-pokemon']}</h2>
