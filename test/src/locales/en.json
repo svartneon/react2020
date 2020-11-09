@@ -10,6 +10,13 @@
     "species": "species",
     "types": "type(s)",
     "gender": "gender",
+    "start-battle": "Start Battle",
+    "your-pokemon-hit": " Your pokémon hit opponent for ",
+    "opponent-hit": "The opponent hit your Pokémon for ",
+    "round": "Round",
+    "winner": "Your Pokémon has Won",
+    "looser": "Your Pokémon has lost",
+    "play-again": "Play Again",
 
     "female": "female",
     "male": "male",

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import translations from '../locales/translations.js';
 import LanguageContext from './LanguageContext.js';
 
-
 const StyledPokemon = styled.div`
     font-size: 20px;
     align-items: center;

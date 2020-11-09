@@ -10,6 +10,13 @@
     "species": "art",
     "types": "typ(er)",
     "gender": "kön",
+    "start-battle": "Anta Utmaningen",
+    "your-pokemon-hit": "Din Pokémon attackerar för ",
+    "opponent-hit": "Motståndaren attackerar för ",
+    "round": "Runda",
+    "winner": "Din Pokémon vann",
+    "looser": "Din Pokémon förlorade",
+    "play-again": "Spela igen",
 
     "female": "kvinna",
     "male": "man",

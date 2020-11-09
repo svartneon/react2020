@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useState, useReducer} from 'react';
 import axios from 'axios';
 import Form from './Form.js';
 import Footer from './Footer.js';
@@ -8,6 +8,8 @@ import {randomInteger, randomGender} from '../helpers/randomizer.js';
 import {formReducer, initialForm} from '../reducers/formReducer.js';
 import {pokemonReducer, initialFighter, initialOpponent} from '../reducers/pokemonReducer.js';
 import LanguageContext from './LanguageContext.js';
+import Button from './Button.js';
+import Battle from './Battle.js';
 import StyledHeader from './StyledHeader.js';
 import StyledWrapper from './StyledWrapper.js';
 import StyledBody from './StyledBody.js';
@@ -18,6 +20,7 @@ function App() {
 
   const [count, setCount] = useState(0);
   const [showOpponent, setShowOpponent] = useState(false);
+  const [battle, setBattle] = useState(false);
   const [locale, setLocale] = useState("en");
 
   const [formState, fReducer] = useReducer(formReducer, initialForm);
@@ -25,19 +28,8 @@ function App() {
   const [opponentState, opponentReducer] = useReducer(pokemonReducer, initialOpponent);
 
   useEffect(() => {
-    document.title = count + " pokémons generated";
-  }, [count]);
-
-  useEffect(() => {
     fetchRandomPokemon();
   }, []);
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    setCount(count + 1);
-    fetchAllPokemonOfType(formState.type);
-    setShowOpponent(true);
-  }
 
   async function fetchAllPokemonOfType() {
     await axios.get("https://pokeapi.co/api/v2/type/" + formState.type)
@@ -48,7 +40,6 @@ function App() {
   }
 
   async function fetchRandomPokemonOfType(data) {
-
     const pokemon = data.pokemon[randomInteger(0, data.pokemon.length - 1)];
     await axios.get(pokemon.pokemon.url)
       .then(res => {
@@ -89,6 +80,17 @@ function App() {
       .catch(error => console.log(error));
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    setCount(count + 1);
+    fetchAllPokemonOfType(formState.type);
+    setShowOpponent(true);
+  }
+
+  function startBattle(){
+    setBattle(true);
+  }
+
   return (
     <LanguageContext.Provider value={locale}>
       <StyledWrapper>
@@ -104,12 +106,28 @@ function App() {
             submitHandler={handleSubmit}
             formReducer={fReducer}
             formState={formState}
+            disabled={showOpponent}
+            hidden={battle}
           />
           <Pokemon
             pokemon={fighterState}
             line={translations[locale]['your-pokemon']}
             contrast="contrast(100%)"
             visibility={showOpponent ? "visible" : "hidden"}
+          />
+          <Battle 
+            hidden={!battle}
+            fighter={fighterState}
+            fighterReducer={fighterReducer}
+            opponent={opponentState}
+            opponentReducer={opponentReducer}
+          />
+          <Button 
+            text = {translations[locale]['start-battle']} 
+            disabled={!showOpponent} 
+            onClick={startBattle} 
+            visibility={showOpponent}
+            hidden={battle}
           />
           <Pokemon
             pokemon={opponentState}

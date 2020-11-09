@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo, useCallback} from 'react';
 import styled from 'styled-components';
 
 const StyledRadio = styled.div`
@@ -19,12 +19,12 @@ function RadioButton(props) {
     value,
   });
 
-  const TypeRadio = React.memo(function TypeRadio({ onChange, value, checked }) {
-    return <input type="radio" value={value} checked={checked} onChange={onChange} />
-  })
+  const handleOnChange = useCallback((radio) => props.formReducer(type({ value: radio.target.value })), [props]);
 
-  const handleOnChange = React.useCallback((radio) => props.formReducer(type({ value: radio.target.value })), [props]);
-  
+  const TypeRadio = memo(function TypeRadio({ onChange, value, checked }) {
+    return <input type="radio" value={value} checked={checked} onChange={onChange} />
+  });
+
   return (
     <StyledRadio>
       <label>
