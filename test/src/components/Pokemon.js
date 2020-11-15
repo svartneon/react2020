@@ -4,7 +4,7 @@ import translations from '../locales/translations.js';
 import LanguageContext from './LanguageContext.js';
 
 const StyledPokemon = styled.div`
-    font-size: 20px;
+    font-size: 15px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -55,6 +55,11 @@ function Pokemon(props) {
                     {translations[locale]["gender"]}: {translations[locale][props.pokemon.gender]}
                     <br />
                     hp: {props.pokemon.hp}
+                    <br />
+                    attack: {props.pokemon.attack}
+                    <br />
+                    {translations[locale]["defense"]}: {props.pokemon.defense}
+                    <br />
                 </p>
             </div>
         </StyledPokemon>

@@ -34,6 +34,9 @@ const StyledForm = styled.form`
   padding-bottom: 10px;
   background-color: rgb(197, 228, 218);
   border-radius: 100px;
+  #buttonDiv {
+    padding-right: 30px;
+  }
 `
 const StyledInput = styled.input`
   min-width: 180px;
@@ -81,26 +84,25 @@ function Form(props) {
         </div>
         <br />
         <br />
-        <br />
         <StyledDivTypes>
-          <RadioButton image={normal} text={translations[locale]['normal']} value={1} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={fighting} text={translations[locale]['fighting']} value={2} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={flying} text={translations[locale]['flying']} value={3} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={poison} text={translations[locale]['poison']} value={4} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={ground} text={translations[locale]['ground']} value={5} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={rock} text={translations[locale]['rock']} value={6} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={bug} text={translations[locale]['bug']} value={7} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={ghost} text={translations[locale]['ghost']} value={8} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={steel} text={translations[locale]['steel']} value={9} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={fire} text={translations[locale]['fire']} value={10} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={water} text={translations[locale]['water']} value={11} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={grass} text={translations[locale]['grass']} value={12} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={electric} text={translations[locale]['electric']} value={13} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={psychic} text={translations[locale]['psychic']} value={14} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={ice} text={translations[locale]['ice']} value={15} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={dragon} text={translations[locale]['dragon']} value={16} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={dark} text={translations[locale]['dark']} value={17} formReducer={props.formReducer} formState={props.formState} />
-          <RadioButton image={fairy} text={translations[locale]['fairy']} value={18} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={normal} text={translations[locale]['normal']} value={props.typeIdMap["normal"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={fighting} text={translations[locale]['fighting']} value={props.typeIdMap["fighting"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={flying} text={translations[locale]['flying']} value={props.typeIdMap["flying"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={poison} text={translations[locale]['poison']} value={props.typeIdMap["poison"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={ground} text={translations[locale]['ground']} value={props.typeIdMap["ground"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={rock} text={translations[locale]['rock']} value={props.typeIdMap["rock"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={bug} text={translations[locale]['bug']} value={props.typeIdMap["bug"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={ghost} text={translations[locale]['ghost']} value={props.typeIdMap["ghost"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={steel} text={translations[locale]['steel']} value={props.typeIdMap["steel"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={fire} text={translations[locale]['fire']} value={props.typeIdMap["fire"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={water} text={translations[locale]['water']} value={props.typeIdMap["water"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={grass} text={translations[locale]['grass']} value={props.typeIdMap["grass"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={electric} text={translations[locale]['electric']} value={props.typeIdMap["electric"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={psychic} text={translations[locale]['psychic']} value={props.typeIdMap["psychic"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={ice} text={translations[locale]['ice']} value={props.typeIdMap["ice"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={dragon} text={translations[locale]['dragon']} value={props.typeIdMap["dragon"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={dark} text={translations[locale]['dark']} value={props.typeIdMap["dark"]} formReducer={props.formReducer} formState={props.formState} />
+          <RadioButton image={fairy} text={translations[locale]['fairy']} value={props.typeIdMap["fairy"]} formReducer={props.formReducer} formState={props.formState} />
         </StyledDivTypes>
         <br />
         <br />
@@ -118,7 +120,7 @@ function Form(props) {
         <br />
         <br />
         <br />
-        <div>
+        <div id="buttonDiv">
           <Button onClick={reFocus} type="submit" text={translations[locale]['generate']} disabled={props.disabled} visibility={true}/>
         </div>
       </StyledForm>

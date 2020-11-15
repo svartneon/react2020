@@ -13,11 +13,11 @@ function Round(props){
 
     return (
     <StyledRound  visibility={props.visibility}>
-        {translations[locale]["your-pokemon-hit"]} {props.fighterHit}!
+        {translations[locale]["your-pokemon-hit"]} {props.fighterHit}! {translations[locale][props.fighterMod]}
         <br />
         <br />
         <br />
-        {translations[locale]["opponent-hit"]} {props.opponenthit}!
+        {translations[locale]["opponent-hit"]} {props.opponenthit}! {translations[locale][props.opponentMod]}
     </StyledRound>
     );
 }

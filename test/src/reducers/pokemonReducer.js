@@ -14,6 +14,10 @@ export const pokemonReducer = (state, action) => {
             return { ...state, species: action.payload };
         case 'hp':
             return { ...state, hp: action.payload };
+        case 'attack':
+            return { ...state, attack: action.payload };
+        case 'defense':
+            return { ...state, defense: action.payload };
         default:
             throw new Error('Unexpected action');
     }

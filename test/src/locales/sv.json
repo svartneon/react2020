@@ -16,7 +16,9 @@
     "round": "Runda",
     "winner": "Din Pokémon vann",
     "looser": "Din Pokémon förlorade",
+    "draw": "Det är oavgjort",
     "play-again": "Spela igen",
+    "defense": "försvar" ,
 
     "female": "kvinna",
     "male": "man",
@@ -38,5 +40,9 @@
     "ice": "is",
     "dragon": "drake",
     "fairy": "älva",
-    "electric": "elektrisk"
+    "electric": "elektrisk",
+
+    "half-damage": " (Halverad Skada)",
+    "double-damage":  " (Dubbel Skada)",
+    "normal-damage": " (Normal Skada)"
 }

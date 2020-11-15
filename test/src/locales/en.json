@@ -16,7 +16,9 @@
     "round": "Round",
     "winner": "Your Pokémon has Won",
     "looser": "Your Pokémon has lost",
+    "draw": "It's a draw",
     "play-again": "Play Again",
+    "defense": "defense" ,
 
     "female": "female",
     "male": "male",
@@ -38,5 +40,9 @@
     "ice": "ice",
     "dragon": "dragon",
     "fairy": "fairy",
-    "electric": "electric"
+    "electric": "electric",
+
+    "half-damage": " (Half Damage)",
+    "double-damage":  " (Double Damage)",
+    "normal-damage": " (Normal Damage)"
 }
