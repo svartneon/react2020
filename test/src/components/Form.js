@@ -121,7 +121,7 @@ function Form(props) {
         <br />
         <br />
         <div id="buttonDiv">
-          <Button onClick={reFocus} type="submit" text={translations[locale]['generate']} disabled={props.disabled} visibility={true}/>
+          <Button onClick={reFocus} type="submit" text={translations[locale]['generate']} disabled={props.disabled} visibility={1}/>
         </div>
       </StyledForm>
 

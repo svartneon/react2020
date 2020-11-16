@@ -37,8 +37,8 @@ function Battle(props) {
 
     const [roundNumber, setRoundNumber] = useState(1);
     const [winner, setWinner] = useState("");
-    const [visibility, setVisibility] = useState(true);
-    const [roundVisibility, setRoundVisibility] = useState(false);
+    const [visibility, setVisibility] = useState(1);
+    const [roundVisibility, setRoundVisibility] = useState(0);
     const [fHit, setFHit] = useState(0);
     const [fMod, setFMod] = useState("normal-damage");
     const [oHit, setOHit] = useState(0);
@@ -156,36 +156,36 @@ function Battle(props) {
 
         if ("opponent" === starter) {
 
-            setRoundVisibility(true);
+            setRoundVisibility(1);
             props.fighterReducer({ type: "hp", payload: props.fighter.hp - opponentHit });
             if ((props.fighter.hp - opponentHit) <= 0) {
                 setWinner("looser");
                 // setRoundVisibility(false);
-                setVisibility(false);
+                setVisibility(0);
                 return;
             }
             props.opponentReducer({ type: "hp", payload: props.opponent.hp - fighterHit });
             if ((props.opponent.hp - fighterHit) <= 0) {
                 setWinner("winner");
                 //  setRoundVisibility(false);
-                setVisibility(false);
+                setVisibility(0);
             }
         }
         else {
 
-            setRoundVisibility(true);
+            setRoundVisibility(1);
             props.opponentReducer({ type: "hp", payload: props.opponent.hp - fighterHit });
             if ((props.opponent.hp - fighterHit) <= 0) {
                 setWinner("winner");
                 // setRoundVisibility(false);
-                setVisibility(false);
+                setVisibility(0);
                 return;
             }
             props.fighterReducer({ type: "hp", payload: props.fighter.hp - opponentHit });
             if ((props.fighter.hp - opponentHit) <= 0) {
                 setWinner("looser");
                 // setRoundVisibility(false);
-                setVisibility(false);
+                setVisibility(0);
             }
         }
     }

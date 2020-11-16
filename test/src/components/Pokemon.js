@@ -45,7 +45,7 @@ function Pokemon(props) {
             <h2>{props.line}</h2>
             <div>
                 {props.pokemon.image}
-                <p>
+                <p data-testid="pokemon">
                     {props.pokemon.name}
                     <br />
                     {translations[locale]["species"]}: {props.pokemon.species}

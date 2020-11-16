@@ -18,8 +18,8 @@ import eng from './../images/eng.svg';
 
 function App() {
 
-  const [showOpponent, setShowOpponent] = useState(false);
-  const [battle, setBattle] = useState(false);
+  const [showOpponent, setShowOpponent] = useState(0);
+  const [battle, setBattle] = useState(0);
   const [locale, setLocale] = useState("en");
 
   const [formState, fReducer] = useReducer(formReducer, initialForm);
@@ -121,7 +121,6 @@ function App() {
         if (res.data.types[1]) {
           opponentReducer({ type: "secondarytype", payload: res.data.types[1].type.name });
         }
-        console.log(res.data.species.name );
       })
       .catch(error => console.log(error));
   }
@@ -129,18 +128,18 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault();
     fetchAllPokemonOfType(formState.type);
-    setShowOpponent(true);
+    setShowOpponent(1);
   }
 
   function startBattle() {
-    setBattle(true);
+    setBattle(1);
   }
 
   return (
     <LanguageContext.Provider value={locale}>
       <StyledWrapper>
         <StyledHeader className="Header">
-          <h1>{translations[locale]['pokemon-battle']}</h1>
+          <h1 data-testid="language">{translations[locale]['pokemon-battle']}</h1>
           <div>
             <img src={eng} alt="eng" onClick={() => setLocale('en')} flag="swe" />
             <img src={swe} alt="swe" onClick={() => setLocale('sv')} flag="eng" />
