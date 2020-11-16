@@ -1,33 +1,39 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export const StyledSelect = styled.select`
-font-size: 20px;
-background-color: #f9f9f9;
-min-width: 180px;
-padding: 3px 3px;
-font-family: monospace;
-`
+   font-size: 20px;
+   background-color: #f9f9f9;
+   min-width: 180px;
+   padding: 3px 3px;
+   font-family: monospace;
+`;
 const gender = ({ value }) => ({
-    type: 'gender',
-    value,
-  });
+   type: "gender",
+   value,
+});
 
 function DropDownList(props) {
+   let listOptions = [];
 
-    let listOptions = [];
+   for (let key in props.options) {
+      listOptions.push(
+         <option key={key} value={props.options[key]}>
+            {props.options[key]}
+         </option>
+      );
+   }
 
-    for (let key in props.options) {
-        listOptions.push(
-            <option key={key} value={props.options[key]}>{props.options[key]}</option>
-        );
-    }
-
-    return (
-        <StyledSelect onChange={(text) => props.formReducer(gender({value:text.target.value}))} defaultValue={props.formState.gender}>
-            {listOptions}
-        </StyledSelect>
-    );
+   return (
+      <StyledSelect
+         onChange={(text) =>
+            props.formReducer(gender({ value: text.target.value }))
+         }
+         defaultValue={props.formState.gender}
+      >
+         {listOptions}
+      </StyledSelect>
+   );
 }
 
 export default DropDownList;
