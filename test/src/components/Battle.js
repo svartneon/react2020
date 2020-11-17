@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import React, { useContext, useState, useMemo } from "react";
 import { randomStarter, randomInteger } from "../helpers/randomizer.js";
+import { calcDmgMod } from "../helpers/fightCalculator.js";
 import translations from "../locales/translations.js";
 import LanguageContext from "./LanguageContext.js";
 import Button from "./Button.js";
@@ -82,14 +83,14 @@ function Battle(props) {
    }, [props.fighter, props.damageModifiers, props.typeIdMap]);
 
    function calcFighterAttack() {
-      if (calcDoubleTo()) {
+      if (calcDmgMod(props.opponent, dmgMods.DoubleTo)) {
          fighterHit =
             props.fighter.attack * 2 -
             props.opponent.defense +
             randomInteger(1, 10);
          fighterMod = "double-damage";
       }
-      if (calcHalfTo()) {
+      if (calcDmgMod(props.opponent, dmgMods.halfTo)) {
          fighterHit = Math.floor(
             (props.fighter.attack -
                props.opponent.defense +
@@ -106,14 +107,14 @@ function Battle(props) {
    }
 
    function calcOpponentAttack() {
-      if (calcDoubleFrom()) {
+      if (calcDmgMod(props.opponent, dmgMods.doubleFrom)) {
          opponentHit =
             props.opponent.attack * 2 -
             props.fighter.defense +
             randomInteger(1, 10);
          fighterMod = "double-damage";
       }
-      if (calcHalfFrom()) {
+      if (calcDmgMod(props.opponent, dmgMods.halfFrom)) {
          opponentHit = Math.floor(
             (props.opponent.attack -
                props.fighter.defense +
@@ -127,58 +128,6 @@ function Battle(props) {
       }
       setOHit(opponentHit);
       setOMod(opponentMod);
-   }
-
-   function calcDoubleFrom() {
-      let exist = false;
-      dmgMods.doubleFrom.forEach((element) => {
-         if (
-            (props.opponent.primarytype || props.opponent.secondarytype) ===
-            element.name
-         ) {
-            exist = true;
-         }
-      });
-      return exist;
-   }
-
-   function calcHalfFrom() {
-      let exist = false;
-      dmgMods.halfFrom.forEach((element) => {
-         if (
-            (props.opponent.primarytype || props.opponent.secondarytype) ===
-            element.name
-         ) {
-            exist = true;
-         }
-      });
-      return exist;
-   }
-
-   function calcDoubleTo() {
-      let exist = false;
-      dmgMods.doubleTo.forEach((element) => {
-         if (
-            (props.opponent.primarytype || props.opponent.secondarytype) ===
-            element.name
-         ) {
-            exist = true;
-         }
-      });
-      return exist;
-   }
-
-   function calcHalfTo() {
-      let exist = false;
-      dmgMods.halfTo.forEach((element) => {
-         if (
-            (props.opponent.primarytype || props.opponent.primarytype) ===
-            element.name
-         ) {
-            exist = true;
-         }
-      });
-      return exist;
    }
 
    function hit() {
@@ -259,7 +208,7 @@ function Battle(props) {
             <br />
             <br />
             <Button
-               visibility={!visibility}
+               visibility={Math.pow(visibility - 1, 2)}
                text={translations[locale]["play-again"]}
                onClick={refreshPage}
             />
