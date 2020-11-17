@@ -83,7 +83,7 @@ function Battle(props) {
    }, [props.fighter, props.damageModifiers, props.typeIdMap]);
 
    function calcFighterAttack() {
-      if (calcDmgMod(props.opponent, dmgMods.DoubleTo)) {
+      if (calcDmgMod(props.opponent, dmgMods.doubleTo)) {
          fighterHit =
             props.fighter.attack * 2 -
             props.opponent.defense +
